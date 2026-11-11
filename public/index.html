@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT 物联网数据可视化面板</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="vendor/chart.umd.min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div>
+                <h1>MQTT 物联网数据可视化面板</h1>
+                <p class="subtitle">主题 iot/test · 设备 sensor-01 · 每 2 秒更新</p>
+            </div>
+            <div class="status" id="status">
+                <span class="dot" id="status-dot"></span>
+                <span id="status-text">正在连接…</span>
+            </div>
+        </header>
+
+        <section class="cards">
+            <div class="card">
+                <span class="card-label">最新温度</span>
+                <span class="card-value" id="temp-value">--</span>
+                <span class="card-unit">℃</span>
+            </div>
+            <div class="card">
+                <span class="card-label">最新湿度</span>
+                <span class="card-value" id="humidity-value">--</span>
+                <span class="card-unit">%</span>
+            </div>
+            <div class="card">
+                <span class="card-label">累计消息数</span>
+                <span class="card-value" id="count-value">0</span>
+                <span class="card-unit">条</span>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h2>温度 / 湿度实时曲线</h2>
+                <span class="hint">最近 60 个数据点</span>
+            </div>
+            <div class="chart-wrap">
+                <canvas id="chart"></canvas>
+                <div class="chart-fallback" id="chart-fallback" hidden>
+                    图表库加载失败（需联网加载 Chart.js），数值卡片与消息流仍可用。
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h2>最新消息</h2>
+                <span class="hint">最近 10 条</span>
+            </div>
+            <ul class="feed" id="feed">
+                <li class="empty">等待数据…</li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>
